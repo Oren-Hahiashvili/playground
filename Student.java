@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Student {
 
-   private String name;												// Student's name.
-   public double test1, test2, test3;								// Grades on three tests.
+   private String name;							// Student's name.
+   public double test1, test2, test3;					// Grades on three tests.
    private static List<Student> _allStudents = new ArrayList<>();	// Share all the students variable by the class and not the by object.
 
    
