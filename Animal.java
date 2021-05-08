@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
 enum Colors {
 	WHITE,
 	RED,
@@ -12,14 +16,16 @@ enum Colors {
 class Creator {
 
 	private static int _lastID = 0;
+	private static List<Creator> _allCreators = new ArrayList<>();
 	private int _id;
 	private Colors eyeColor;
 	private Colors bodyColor;
 	private String name;
 	
 	void initilaizeID(){
-		_lastID++;
 		_id = _lastID;
+		_lastID++;
+		_allCreators.add(this);
 	}
 	
 	int getID() {
@@ -27,15 +33,23 @@ class Creator {
 	}
 
 	String getName() {
-		return name;
+		return getName(this._id);
+	}
+	
+	String getName(int id) {
+		return _allCreators.get(id).name;
 	}
 
 	Colors getEyeColor() {
 		return eyeColor;
 	}
-	
+
 	Colors getBodyColor() {
-		return bodyColor;
+		return getBodyColor(this._id);
+	}
+	
+	Colors getBodyColor(int id) {
+		return _allCreators.get(id).bodyColor;
 	}
 
 		
@@ -131,9 +145,10 @@ public class Animal {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Dog dubi = new Dog("Dubi");
+		Dog dubi = new Dog("Dubi", Colors.BLACK);
 		Dog milki = new Dog("Milki");
-		System.out.println(milki.getName());
+		System.out.println(milki.getName(0));
+		System.out.println(milki.getBodyColor(0));
 		dubi.talk();
 
 	}
